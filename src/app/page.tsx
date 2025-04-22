@@ -13,7 +13,7 @@ const Home = async () => {
   console.log(populars);
 
   return (
-    <div className="w-screen">
+    <div className="w-screen h-10 md:h-14 lg:h-20">
       <Header />
     </div>
   );
