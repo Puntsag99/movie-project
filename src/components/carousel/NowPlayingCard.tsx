@@ -43,24 +43,21 @@ export const NowPlayingCard = ({ movies }: Props) => {
   // console.log("трэйлэр байна уу:", trailer.key);
 
   return (
-    <div>
-      <div className="flex md:hidden">
-        <div className="flex md:hidden flex-col ">
-          <p className="text-sm font-normal not-italic">Now Playing:</p>
+    <div className="w-full flex px-4 py-4   md:px-0 md:py-0">
+      <div className="  w-full gap-y-4 flex flex-col md:text-white md:w-101  md:gap-y-4 ">
+        <div className="  flex justify-between md:flex md:flex-col ">
+          <div className="flex flex-col ">
+            <p className=" text-sm  md:text-base font-normal not-italic">
+              Now Playing:
+            </p>
 
-          <p className="text-2xl font-semibold not-italic">{movies.title}</p>
-        </div>
-        <Image width={28} height={28} src="/iconImg/star.png" alt="star" />
-        {movies.vote_average.toFixed(1)} /10
-      </div>
+            <p className="text-2xl font-semibold md:text-4xl md:font-bold not-italic">
+              {movies.title}
+            </p>
+          </div>
 
-      <div className=" flex   flex-col text-white w-101  gap-y-4 ">
-        <div className=" hidden md:flex flex-col ">
-          <p className="text-base font-normal not-italic">Now Playing:</p>
-
-          <p className="text-4xl font-bold not-italic">{movies.title}</p>
           <div className="flex ">
-            <p className="flex items-center gap-x-1 text-[18px] not-italic font-semibold">
+            <p className=" text-sm font-normal flex items-center gap-x-1 md:text-[18px] not-italic md:font-semibold">
               <Image
                 width={28}
                 height={28}
@@ -72,8 +69,8 @@ export const NowPlayingCard = ({ movies }: Props) => {
           </div>
         </div>
 
-        <div className="hidden md:flex flex-col gap-y-4">
-          <p className="w-[302px] text-3 font-normal not-italic ">
+        <div className=" flex gap-y-4 md:flex flex-col md:gap-y-4">
+          <p className=" w-full text-3 font-normal not-italic ">
             {movies.overview}
           </p>
 
@@ -83,7 +80,7 @@ export const NowPlayingCard = ({ movies }: Props) => {
 
           <Button
             onClick={handleShowTrailer}
-            className=" flex gap-x-2 text-sm not-italic font-medium text-black  w-[145px] bg-[#F4F4F5]"
+            className=" text-white  bg-black flex gap-x-2 text-sm not-italic font-medium md:text-black  w-[145px] md:bg-[#F4F4F5]"
           >
             <Play /> Watch Trailer
           </Button>

@@ -66,7 +66,7 @@ export const Carousel = ({}) => {
           />
         </div>
       )}
-      <div className="block md:hidden">
+      <div className="flex md:hidden">
         <NowPlayingCard movies={CarsoulMovies} />
       </div>
     </div>

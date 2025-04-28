@@ -26,7 +26,7 @@ export const GenreDropdown = () => {
   // console.log(genres);
 
   return (
-    <div className="">
+    <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -42,9 +42,9 @@ export const GenreDropdown = () => {
 
         <DropdownMenuContent
           align="start"
-          className="  border border-[#E4E4E7]"
+          className="  bg-white border border-[#E4E4E7]"
         >
-          <div className="  w-[335px]  md:w-[577px] p-[5px]  ">
+          <div className=" w-[335px]  md:w-[577px] p-[5px]  ">
             <div className="flex flex-col gap-y-1 p-[5px]">
               <p className="text-2xl not-italic font-semibold">Genres</p>
               <p className="text-base not-italic font-normal">
