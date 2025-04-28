@@ -1,47 +1,73 @@
 "use client";
 
-import Image from "next/image";
-import { Button } from "../ui/button";
-import { Play } from "lucide-react";
+import { useEffect, useState } from "react";
+import { NowPlayingCard } from "./NowPlayingCard";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
 
-export const Carousel = () => {
+export const Carousel = ({}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const { data, isLoading } = useFetchDatainClient(
     "/movie/upcoming?language=en-US&page=1"
   );
+  // console.log("data ids", data);
 
-  console.log("now data", data);
+  const playing = data?.results || [];
+
+  // console.log("dafaf", playing);
+
+  const CarsoulMovies = playing[currentIndex];
+  // console.log("bhnfn", CarsoulMovies);
+
+  const handleClickNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % playing.length);
+    console.log("afsdgsg");
+  };
+
+  const handleClickBack = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + playing.length) % playing.length
+    );
+    console.log("nnnnn");
+  };
+
+  useEffect(() => {
+    if (playing.length) {
+      const clearMovie = setInterval(() => {
+        setCurrentIndex((prevMovies) => (prevMovies + 1) % playing.length);
+      }, 6000);
+
+      return () => clearInterval(clearMovie);
+    }
+  }, [playing]);
 
   return (
-    <div className="bg-blue-400 mt-6 h-150 px-35 py-[178px] ">
-      <div className="flex flex-col text-white w-101  gap-y-4 ">
-        <div className="flex flex-col">
-          <p className="text-base font-normal not-italic">Now Playing:</p>
-          <p className="text-4xl font-bold not-italic">Movie name</p>
-          <div className="flex ">
-            <p className="flex items-center gap-x-1 text-[18px] not-italic font-semibold">
-              <Image
-                width={28}
-                height={28}
-                src="/iconImg/star.png"
-                alt="star"
-              />
-              6.9/10
-            </p>
+    <div className="md:mt-6 w-full overflow-hidden">
+      {CarsoulMovies && (
+        <div
+          className="h-[246px] relative bg-cover bg-center bg-no-repeat md:h-150 md:px-35 md:py-[178px] flex items-center"
+          style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/original${CarsoulMovies.poster_path})`,
+          }}
+        >
+          <ChevronLeft
+            onClick={handleClickBack}
+            className="w-10 h-10 bg-[#f4f4f5] rounded-full cursor-pointer absolute left-11"
+          />
+          <div className="hidden md:block">
+            <NowPlayingCard movies={CarsoulMovies} />
           </div>
-        </div>
 
-        <div className="flex flex-col gap-y-4">
-          <p className="w-[302px] text-3 font-normal not-italic ">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque,
-            distinctio vel minus dignissimos excepturi, culpa quas, consequuntur
-            voluptates exercitationem accusamus asperiores nisi quam? Quis ullam
-            adipisci dolorem quos maxime perferendis.
-          </p>
-          <Button className="flex gap-x-2 text-sm not-italic font-medium bg-white w-[145px] ">
-            <Play /> Watch Trailer
-          </Button>
+          <ChevronRight
+            onClick={handleClickNext}
+            className="w-10 h-10 bg-[#f4f4f5] rounded-full cursor-pointer absolute right-11 "
+          />
         </div>
+      )}
+      <div className="block md:hidden">
+        <NowPlayingCard movies={CarsoulMovies} />
       </div>
     </div>
   );

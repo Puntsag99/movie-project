@@ -7,4 +7,4 @@ export const fetchMovieData = async (endPoint: string) => {
   return data;
 };
 
-console.log("fafagsgs", data);
+// console.log("fafagsgs", data);
