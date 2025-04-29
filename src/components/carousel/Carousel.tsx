@@ -12,14 +12,10 @@ export const Carousel = ({}) => {
   const { data, isLoading } = useFetchDatainClient(
     "/movie/upcoming?language=en-US&page=1"
   );
-  // console.log("data ids", data);
 
   const playing = data?.results || [];
 
-  // console.log("dafaf", playing);
-
   const CarsoulMovies = playing[currentIndex];
-  // console.log("bhnfn", CarsoulMovies);
 
   const handleClickNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % playing.length);
@@ -49,7 +45,7 @@ export const Carousel = ({}) => {
         <div
           className="h-[246px] relative bg-cover bg-center bg-no-repeat md:h-150 md:px-35 md:py-[178px] flex items-center"
           style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/original${CarsoulMovies.poster_path})`,
+            backgroundImage: `url(https://image.tmdb.org/t/p/original${CarsoulMovies.backdrop_path})`,
           }}
         >
           <ChevronLeft
@@ -66,9 +62,11 @@ export const Carousel = ({}) => {
           />
         </div>
       )}
-      <div className="flex md:hidden">
-        <NowPlayingCard movies={CarsoulMovies} />
-      </div>
+      {CarsoulMovies && (
+        <div className="flex md:hidden">
+          <NowPlayingCard movies={CarsoulMovies} />
+        </div>
+      )}
     </div>
   );
 };

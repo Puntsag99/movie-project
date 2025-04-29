@@ -1,12 +1,12 @@
 import { Carousel } from "@/components/carousel/Carousel";
-import { Movies } from "@/components/movies/Movies";
+import { MoviesList } from "@/components/movies/MoviesList";
 
 const Home = async () => {
   console.log("env", process.env.TMDB_BASE_URL);
   return (
     <div className="w-screen">
       <Carousel />
-      <Movies />
+      <MoviesList />
     </div>
   );
 };
