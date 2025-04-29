@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  SearchOther,
-  Closure,
-  SearchPageBar,
-  ThemeToggle,
-  GenreDropdown,
-} from "@/components/header";
+import { SearchOther, SearchPageBar, ThemeToggle } from "@/components/header";
 
 import { Logo } from "../common";
 import { usePathname } from "next/navigation";
