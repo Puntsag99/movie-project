@@ -44,7 +44,7 @@ export const Movies = ({ title, apiUrl }: MoviesProps) => {
               className="rounded-lg  object-cover w-full"
             />
             <div className=" w-full bg-[#f4f4f5] h-[95px] flex justify-center">
-              <div className="w-[245px]">
+              <div className="w-full">
                 <div className="flex gap-x-[2px] items-center mt-2">
                   <Image
                     width={16}
