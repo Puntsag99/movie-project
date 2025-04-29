@@ -1,12 +1,12 @@
 "use client";
 
-import { SearchIcon, X } from "lucide-react";
+import { useState } from "react";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { SearchIcon, X } from "lucide-react";
 import { GenreDropdown } from "./GenreDropdown";
 import { AnimatePresence, motion } from "framer-motion";
 import { searchBarAnimationVariants } from "@/constants/search-bar-input-animtaion";
-import { useState } from "react";
-import { Button } from "../ui/button";
 
 export const SearchOther = () => {
   const [showSearch, setShowSearch] = useState(false);
