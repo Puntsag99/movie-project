@@ -1,5 +1,4 @@
-import { GenreList } from "../_components/GenreList";
-
+import { GenreList } from "@/app/_components/GenreList";
 const Home = () => {
   return (
     <div>

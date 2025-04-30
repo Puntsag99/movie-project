@@ -13,10 +13,6 @@ type Genre = {
 export const GenrePanel = () => {
   const router = useRouter();
 
-  const goToGenresPage = () => {
-    router.push("/genres");
-  };
-
   const { data, isLoading } = useFetchDatainClient(
     "/genre/movie/list?language=en"
   );
@@ -38,7 +34,7 @@ export const GenrePanel = () => {
       <div className="flex flex-wrap gap-4 ">
         {genres.map((genre: Genre) => (
           <Badge
-            onClick={goToGenresPage}
+            onClick={() => router.push(`/genres/${genre.id}`)}
             key={genre.id}
             variant="outline"
             className="   px-3  py-1 text-[12px]  rounded-full  gap-x-2 cursor-pointer border border-[#e4e4e7] not-italic font-semibold"
