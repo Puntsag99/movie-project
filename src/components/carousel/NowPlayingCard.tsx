@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { Button } from "../ui/button";
-import { Play } from "lucide-react";
-import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
 import { useState } from "react";
+import { Play } from "lucide-react";
 import { Trailer } from "./Trailer";
+import { Button } from "../ui/button";
+import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
 
 export type NowPlay = {
   id: number;
@@ -31,6 +31,7 @@ export const NowPlayingCard = ({ movies }: Props) => {
   const { data, isLoading } = useFetchDatainClient(
     `/movie/${movies.id}/videos?language=en-US`
   );
+  // console.log("ahfalhfafa", data);
 
   const trailer = data?.results?.find(
     (item: Video) => item.type === "Trailer" && item.site === "YouTube"

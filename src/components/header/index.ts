@@ -4,3 +4,4 @@ export * from "./Closure";
 export * from "./SearchBarPage";
 export * from "./ThemeToggle";
 export * from "./GenreDropdown";
+export * from "./GenrePanel";

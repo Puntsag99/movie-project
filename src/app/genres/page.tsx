@@ -1,6 +1,6 @@
 import { GenreList } from "../_components/GenreList";
 
-const GenresPage = () => {
+const Home = () => {
   return (
     <div>
       <GenreList />
@@ -8,4 +8,4 @@ const GenresPage = () => {
   );
 };
 
-export default GenresPage;
+export default Home;

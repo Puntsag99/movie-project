@@ -1,29 +1,15 @@
 "use client";
 
 import { Button } from "../ui/button";
-import { ChevronDown, ChevronRight } from "lucide-react";
-import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
+import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Badge } from "@/components/ui/badge";
-
-type Genre = {
-  id: number;
-  name: string;
-};
+import { GenrePanel } from "./GenrePanel";
 
 export const GenreDropdown = () => {
-  const { data, isLoading } = useFetchDatainClient(
-    "/genre/movie/list?language=en"
-  );
-
-  const genres = data?.genres || [];
-
-  // console.log(genres);
-
   return (
     <div>
       <DropdownMenu>
@@ -43,28 +29,7 @@ export const GenreDropdown = () => {
           align="start"
           className="  bg-white border border-[#E4E4E7]"
         >
-          <div className=" w-[335px]  md:w-[577px] p-[5px]  ">
-            <div className="flex flex-col gap-y-1 p-[5px]">
-              <p className="text-2xl not-italic font-semibold">Genres</p>
-              <p className="text-base not-italic font-normal">
-                See lists of movies by gene
-              </p>
-            </div>
-            <div className="my-4 border-t border border-[#E4E4e7]" />
-
-            <div className="flex flex-wrap gap-4 ">
-              {genres.map((genre: Genre) => (
-                <Badge
-                  key={genre.id}
-                  variant="outline"
-                  className="   px-3  py-1 text-[12px]  rounded-full  gap-x-2 cursor-pointer border border-[#e4e4e7] not-italic font-semibold"
-                >
-                  {genre.name}
-                  <ChevronRight className="w-4 h-4" />
-                </Badge>
-              ))}
-            </div>
-          </div>
+          <GenrePanel />
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
