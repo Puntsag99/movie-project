@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { ArrowBigRight } from "lucide-react";
 import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
-import Image from "next/image";
 
 export type Mov = {
-  id: number;
+  id: string;
   title: string;
   name?: string;
   vote_average: number;
@@ -20,8 +21,10 @@ type MoviesProps = {
 export const Movies = ({ title, apiUrl }: MoviesProps) => {
   const { data, isLoading } = useFetchDatainClient(apiUrl);
 
-  const upMovie = data?.results || [];
-  // console.log("ene yu we :", upMovie);
+  const router = useRouter();
+
+  const moviesData = data?.results || [];
+  console.log("ene yu we :", moviesData);
 
   return (
     <div className="px-5 mt-8 flex flex-col md:mt-[52px] md:px-20 ">
@@ -34,14 +37,15 @@ export const Movies = ({ title, apiUrl }: MoviesProps) => {
       </div>
 
       <div className=" grid gap-5 grid-cols-2 grid-rows-5 md:grid-rows-2 md:grid-cols-5 mt-8 md:gap-8 ">
-        {upMovie.slice(0, 10).map((movie: Mov) => (
+        {moviesData.slice(0, 10).map((movie: Mov) => (
           <div key={movie.id} className="  flex flex-col  ">
             <Image
+              alt="movie"
               width={230}
               height={340}
-              alt="movie"
+              onClick={() => router.push(`/detail/${movie.id}`)}
               src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-              className="rounded-lg  object-cover w-full"
+              className="rounded-lg cursor-pointer object-cover w-full"
             />
             <div className=" w-full bg-[#f4f4f5] h-[95px] flex justify-center">
               <div className="w-full">

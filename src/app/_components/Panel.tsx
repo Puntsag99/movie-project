@@ -1,7 +1,8 @@
 "use client";
-import { ChevronRight } from "lucide-react";
-import { GenreMovies } from "./GenreMovies";
+
+import { ChevronRight, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
 
 type Genre = {
@@ -10,40 +11,73 @@ type Genre = {
 };
 
 export const Panel = () => {
+  const router = useRouter();
+
+  const params = useSearchParams();
+  const urlGenreId = params.get("genres");
+
+  // console.log("ggggggggggggg", urlGenreId); //home ees orj irsen genre iin id
+
+  const selectedGenreIds = urlGenreId
+    ? urlGenreId.split(",").map((id) => parseInt(id))
+    : [];
+
+  // console.log("end yu bna:", selectedGenreIds);
+
+  const handleClick = (id: number) => {
+    let newSelectedIds: number[] = [];
+
+    if (selectedGenreIds.includes(id)) {
+      newSelectedIds = selectedGenreIds.filter((item) => item !== id);
+      console.log("aaaaaaaaa", newSelectedIds);
+    } else {
+      newSelectedIds = [...selectedGenreIds, id];
+
+      console.log("hhhhhhhhhhhhh", newSelectedIds);
+    }
+
+    const urlString = newSelectedIds.join(",");
+    router.push(`/genresResults?genres=${urlString}`);
+  };
+
   const { data, isLoading } = useFetchDatainClient(
     "/genre/movie/list?language=en"
   );
 
   const genres = data?.genres || [];
+  // console.log(genres);
 
   return (
-    <div className="flex gap-x-4 mt-8">
-      <div className=" w-[335px] flex flex-col gap-y-5 md:w-[387px] ">
-        <div className="flex flex-col gap-y-1 ">
-          <p className="text-2xl not-italic font-semibold">Genres</p>
-          <p className="text-base not-italic font-normal">
-            See lists of movies by gene
-          </p>
-        </div>
-
-        <div className="flex flex-wrap gap-4 w-full ">
-          {genres.map((genre: Genre) => (
-            <Badge
-              key={genre.id}
-              variant="outline"
-              className="   px-3  py-1 text-[12px]  rounded-full  gap-x-2 cursor-pointer border border-[#e4e4e7] not-italic font-semibold"
-            >
-              {genre.name}
-              <ChevronRight className="w-4 h-4" />
-            </Badge>
-          ))}
-        </div>
+    <div className="flex flex-col md:w-[387px] mt-8 gap-y-5">
+      <div className="flex flex-col gap-y-1">
+        <p className="text-2xl font-semibold">Genres</p>
+        <p className="text-base font-normal">See lists of movies by genre</p>
       </div>
 
-      <div className=" md:w-px h-screen bg-[#E4E4e7]" />
-
-      <div>
-        <GenreMovies />
+      <div className="flex flex-wrap gap-4">
+        {isLoading ? (
+          <p>Loading genres...</p>
+        ) : (
+          genres.map((genre: Genre) => (
+            <Badge
+              key={genre.id}
+              onClick={() => handleClick(genre.id)}
+              variant="outline"
+              className={`px-3 py-1 text-[12px] rounded-full gap-x-2 cursor-pointer border ${
+                selectedGenreIds.includes(genre.id)
+                  ? "bg-black text-white"
+                  : "bg-white dark:text-black"
+              } font-semibold`}
+            >
+              {genre.name}
+              {selectedGenreIds.includes(genre.id) ? (
+                <X size={16} className="ml-2" />
+              ) : (
+                <ChevronRight size={16} className="ml-2" />
+              )}
+            </Badge>
+          ))
+        )}
       </div>
     </div>
   );

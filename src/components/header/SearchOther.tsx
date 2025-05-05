@@ -6,14 +6,30 @@ import { Button } from "../ui/button";
 import { SearchIcon, X } from "lucide-react";
 import { GenreDropdown } from "./GenreDropdown";
 import { AnimatePresence, motion } from "framer-motion";
+import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
 import { searchBarAnimationVariants } from "@/constants/search-bar-input-animtaion";
 
 export const SearchOther = () => {
   const [showSearch, setShowSearch] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  const { data, isLoading } = useFetchDatainClient(
+    `/search/movie?query=${searchValue}&language=en-US&page=1`
+  );
+
+  const searchData = data?.results;
+
+  console.log("hhohohoh", searchData);
 
   const handleSearchClick = () => {
     setShowSearch(!showSearch);
   };
+
+  const handleChange = (event: any) => {
+    setSearchValue(event.target.value);
+  };
+
+  console.log("afa", searchValue);
 
   return (
     <div className=" flex flex-1 md:flex-0  gap-x-3">
@@ -22,6 +38,8 @@ export const SearchOther = () => {
         <div className="relative ">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input
+            value={searchValue}
+            onChange={handleChange}
             type="text"
             placeholder="Search..."
             className="w-[97px] md:w-[379px] pl-10 pr-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"

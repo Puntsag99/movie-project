@@ -16,10 +16,10 @@ export const GenrePanel = () => {
   const { data, isLoading } = useFetchDatainClient(
     "/genre/movie/list?language=en"
   );
-
+  // if (isLoading) return <p>Loading genres...</p>;
   const genres = data?.genres || [];
 
-  // console.log("faaga", genres);
+  console.log("afa", genres);
 
   return (
     <div className="w-[335px] md:w-[577px] p-[5px] ">
@@ -32,17 +32,21 @@ export const GenrePanel = () => {
       <div className="my-4 border-t  border-[#E4E4e7]" />
 
       <div className="flex flex-wrap gap-4 ">
-        {genres.map((genre: Genre) => (
-          <Badge
-            onClick={() => router.push(`/genres/${genre.id}`)}
-            key={genre.id}
-            variant="outline"
-            className="   px-3  py-1 text-[12px]  rounded-full  gap-x-2 cursor-pointer border border-[#e4e4e7] not-italic font-semibold"
-          >
-            {genre.name}
-            <ChevronRight className="w-4 h-4" />
-          </Badge>
-        ))}
+        {genres.map((genre: Genre) => {
+          // console.log("ids", genre.id);
+
+          return (
+            <Badge
+              onClick={() => router.push(`/genresResults?genres=${genre.id}`)}
+              key={genre.id}
+              variant="outline"
+              className="   px-3  py-1 text-[12px]  rounded-full  gap-x-2 cursor-pointer border border-[#e4e4e7] not-italic font-semibold"
+            >
+              {genre.name}
+              <ChevronRight className="w-4 h-4" />
+            </Badge>
+          );
+        })}
       </div>
     </div>
   );

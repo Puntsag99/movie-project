@@ -40,7 +40,7 @@ export const Carousel = ({}) => {
   }, [playing]);
 
   return (
-    <div className="md:mt-6 w-full overflow-hidden">
+    <div className="md:mt-6 w-full overflow-hidden  ">
       {CarsoulMovies && (
         <div
           className="h-[246px] relative bg-cover bg-center bg-no-repeat md:h-150 md:px-35 md:py-[178px] flex items-center"
