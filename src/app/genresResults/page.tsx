@@ -1,5 +1,3 @@
-"use client";
-
 import { GenreFilre } from "../_components/GenreFilre";
 import { Suspense } from "react";
 
