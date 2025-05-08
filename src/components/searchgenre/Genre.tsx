@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "../ui/button";
 import { ChevronDown } from "lucide-react";
 import {
@@ -7,14 +5,14 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { GenrePanel } from "./GenrePanel";
+import { SearchPanel } from "./SearchPanel";
 
-export const GenreDropdown = () => {
+export const Genre = () => {
   return (
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="rounded-[10px] md:w-[97px]   ">
+          <Button variant="outline" className="rounded-[10px] md:w-[97px]">
             <ChevronDown />
             <p className=" hidden md:block text-[14px] not-italic font-medium">
               Genre
@@ -24,9 +22,9 @@ export const GenreDropdown = () => {
 
         <DropdownMenuContent
           align="start"
-          className="bg-white dark:bg-black border border-[#E4E4E7]"
+          className="  bg-white border border-[#E4E4E7]"
         >
-          <GenrePanel />
+          <SearchPanel />
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

@@ -21,7 +21,7 @@ const formatRuntime = (runtime: number) => {
 };
 
 export const Info_det = () => {
-  const { detailId } = useParams();
+  const { detailId } = useParams() as { detailId: string };
 
   // console.log("aaaa", detailId);
 

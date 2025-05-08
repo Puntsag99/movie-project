@@ -10,7 +10,7 @@ type More = {
   vote_average: number;
 };
 
-export const More = ({ moreId }: { moreId: any }) => {
+export const More = ({ moreId }: { moreId: string }) => {
   const router = useRouter();
 
   const { data, isLoading } = useFetchDatainClient(
@@ -50,7 +50,7 @@ export const More = ({ moreId }: { moreId: any }) => {
               src={`https://image.tmdb.org/t/p/original${more.poster_path}`}
             />
 
-            <div className="w-full flex flex-col h-[87px] bg-[#f4f4f5] p-1 gap-y-[3px]">
+            <div className="w-full flex flex-col h-[87px] dark:bg-[#27272A] bg-[#f4f4f5] p-1 gap-y-[3px]">
               <div className="flex items-center gap-x-1">
                 <Image
                   width={16}

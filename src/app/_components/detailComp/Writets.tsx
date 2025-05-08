@@ -12,7 +12,7 @@ export const Writets = ({
   detailId,
 }: {
   write: Wrote;
-  detailId: any;
+  detailId: string;
 }) => {
   const Genres = write?.genres;
 
@@ -87,9 +87,13 @@ export const Writets = ({
         <div className="flex flex-col gap-y-5">
           {movieInfo.map((item) => (
             <div key={item.label} className="flex flex-col gap-y-1">
-              <div className="flex gap-x-[53px]">
-                <p className="text-base not-italic font-bold">{item.label}</p>
-                <p className="text-base not-italic font-normal">{item.value}</p>
+              <div className="flex gap-x-[53px] ">
+                <p className=" w-[64px] text-base not-italic font-bold">
+                  {item.label}
+                </p>
+                <p className=" text-base not-italic font-normal">
+                  {item.value}
+                </p>
               </div>
               <div className="w-full h-[1px] border-b border-[#E4E4E7]" />
             </div>

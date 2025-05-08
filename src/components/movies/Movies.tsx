@@ -31,7 +31,14 @@ export const Movies = ({ title, apiUrl }: MoviesProps) => {
       <div className="flex items-center justify-between">
         <p className="text-2xl not-italic font-semibold">{title}</p>
         <div className="flex items-center gap-x-2 ">
-          <p className="text-sm not-italic font-medium">See more</p>
+          <p
+            onClick={() =>
+              router.push(`/topPopNowsee?cate=${title.toLowerCase()}`)
+            }
+            className="text-sm not-italic font-medium cursor-pointer"
+          >
+            See more
+          </p>
           <ArrowBigRight className="w-4 h-4" />
         </div>
       </div>
@@ -47,7 +54,7 @@ export const Movies = ({ title, apiUrl }: MoviesProps) => {
               src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
               className="rounded-lg cursor-pointer object-cover w-full"
             />
-            <div className=" w-full bg-[#f4f4f5] h-[95px] flex justify-center">
+            <div className=" w-full bg-[#f4f4f5] dark:bg-[#27272A] h-[95px] flex justify-center">
               <div className="w-full">
                 <div className="flex gap-x-[2px] items-center mt-2">
                   <Image

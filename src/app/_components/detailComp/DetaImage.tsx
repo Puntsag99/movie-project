@@ -1,7 +1,8 @@
-import { Play } from "lucide-react";
 import Image from "next/image";
-import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
+import { Play } from "lucide-react";
+import YouTube from "react-youtube";
 import { useState } from "react";
+import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
 
 interface MovieDetail {
   poster_path: string;
@@ -16,6 +17,8 @@ interface trailer {
 }
 
 export const DetaImage = ({ imageData }: { imageData: MovieDetail }) => {
+  const [showTrailer, setShowTrailer] = useState(false);
+
   const { data: videoData, isLoading } = useFetchDatainClient(
     `/movie/${imageData.id}/videos?language=en-US`
   );
@@ -28,8 +31,20 @@ export const DetaImage = ({ imageData }: { imageData: MovieDetail }) => {
 
   console.log("ggg", findTrailer);
 
+  const handleTrailer = () => {
+    setShowTrailer(true);
+  };
+
+  const opts = {
+    height: "100%",
+    width: "100%",
+    playerVars: {
+      autoplay: 0,
+    },
+  };
+
   return (
-    <div className=" mt-4 md:mt-6 flex flex-col md:flex-row relative    gap-x-8">
+    <div className=" mt-4 md:mt-6 flex flex-col md:flex-row relative gap-x-8">
       <Image
         width={375}
         height={211}
@@ -37,28 +52,39 @@ export const DetaImage = ({ imageData }: { imageData: MovieDetail }) => {
         alt="detailImageBackdrop_path"
         src={`https://image.tmdb.org/t/p/original${imageData.backdrop_path}`}
       />
-
-      <Image
-        width={290}
-        height={428}
-        alt="detailPoster_path"
-        className="  hidden md:block w-full object-cover"
-        src={`https://image.tmdb.org/t/p/original${imageData.poster_path}`}
-      />
-
-      <Image
-        width={760}
-        height={428}
-        className=" hidden md:block w-full  object-cover"
-        alt="detailImageBackdrop_path"
-        src={`https://image.tmdb.org/t/p/original${imageData.backdrop_path}`}
-      />
-      <div className="absolute left-4 top-45  md:top-120 md:left-100 flex items-center gap-x-3">
-        <div className="bg-white rounded-full w-10 h-10 flex justify-center items-center">
-          <Play className="w-4 h-4  text-black" />
-        </div>
-        <p className="text-white">Play trailer 2:35</p>
+      <div className="hidden md:block w-[290px] h-[428px] relative ">
+        <Image
+          fill
+          alt="detailPoster_path"
+          className="    object-cover"
+          src={`https://image.tmdb.org/t/p/original${imageData.poster_path}`}
+        />
       </div>
+      <div className=" w-full   relative">
+        <div className="hidden md:block w-full h-[428px] relative">
+          <Image
+            fill
+            className="   object-cover"
+            alt="detailImageBackdrop_path"
+            src={`https://image.tmdb.org/t/p/original${imageData.backdrop_path}`}
+          />
+        </div>
+        <div className="absolute  cursor-pointer top-[-50] left-5  md:top-95 md:left-10 flex items-center gap-x-3">
+          <div className="bg-white rounded-full w-10 h-10 flex justify-center items-center">
+            <Play onClick={handleTrailer} className="w-4 h-4  text-black" />
+          </div>
+          <p className="text-white">Play trailer 2:35</p>
+        </div>
+      </div>
+      {showTrailer && findTrailer && (
+        <div className="absolute h-[240px] w-full md:w-[997px] md:h-[561px] md:left-[200px] md:top-[-65] z-10">
+          <YouTube
+            videoId={findTrailer.key}
+            opts={opts}
+            className="w-full h-full"
+          />
+        </div>
+      )}
     </div>
   );
 };

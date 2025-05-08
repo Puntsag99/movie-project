@@ -5,6 +5,7 @@ import { NowPlayingCard } from "./NowPlayingCard";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
+import { HomeSkel } from "@/components/skeleton/HomeSkel";
 
 export const Carousel = ({}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,6 +15,7 @@ export const Carousel = ({}) => {
   );
 
   const playing = data?.results || [];
+  const currentMovie = playing[currentIndex];
 
   const CarsoulMovies = playing[currentIndex];
 
@@ -38,6 +40,10 @@ export const Carousel = ({}) => {
       return () => clearInterval(clearMovie);
     }
   }, [playing]);
+
+  if (isLoading || !currentMovie) {
+    return <HomeSkel />;
+  }
 
   return (
     <div className="md:mt-6 w-full overflow-hidden  ">

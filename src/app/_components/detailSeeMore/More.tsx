@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
+import { DynamicPagination } from "@/components/common/DynamicPagination";
 
 type See = {
   id: number;
@@ -14,12 +15,17 @@ type See = {
 
 export const More = () => {
   const { seeId } = useParams();
+  const searchParams = useSearchParams();
 
   const router = useRouter();
 
+  const page = searchParams.get("page") || 1;
+
   const { data, isLoading } = useFetchDatainClient(
-    `/movie/${seeId}/similar?language=en-US&page=1`
+    `/movie/${seeId}/similar?language=en-US&page=${page}`
   );
+
+  const totalPage = data?.total_pages;
 
   const seeData = data?.results;
 
@@ -42,7 +48,7 @@ export const More = () => {
                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
               />
 
-              <div className="w-full flex flex-col h-[87px] bg-[#f4f4f5] p-1 ">
+              <div className="w-full flex flex-col h-[87px] dark:bg-[#27272A] bg-[#f4f4f5] p-1 ">
                 <div className="flex items-center gap-x-1">
                   <Image
                     width={16}
@@ -59,6 +65,9 @@ export const More = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex justify-end">
+          <DynamicPagination totalPage={totalPage} />
         </div>
       </div>
     </div>

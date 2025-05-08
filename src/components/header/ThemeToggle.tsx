@@ -1,12 +1,21 @@
-import { Moon, Sun } from "lucide-react";
+"use client";
+
+import { useTheme } from "next-themes";
+import { Sun, Moon } from "lucide-react";
+import { Button } from "../ui/button";
 
 export const ThemeToggle = () => {
+  const { setTheme, resolvedTheme } = useTheme();
+
+  const isDarkMode = resolvedTheme === "dark";
+
+  const handleClickTheme = () => setTheme(isDarkMode ? "light" : "dark");
+
   return (
-    <div className="flex">
-      <button className="w-9 h-9 border border-[#E4E4E7] flex justify-center items-center rounded-[10px]">
-        <Moon className="w-4 h-4" />
-        {/* <Sun className="w-9 h-9" /> */}
-      </button>
+    <div>
+      <Button onClick={handleClickTheme} size="icon">
+        {isDarkMode ? <Sun /> : <Moon />}
+      </Button>
     </div>
   );
 };

@@ -29,11 +29,8 @@ export const Panel = () => {
 
     if (selectedGenreIds.includes(id)) {
       newSelectedIds = selectedGenreIds.filter((item) => item !== id);
-      console.log("aaaaaaaaa", newSelectedIds);
     } else {
       newSelectedIds = [...selectedGenreIds, id];
-
-      console.log("hhhhhhhhhhhhh", newSelectedIds);
     }
 
     const urlString = newSelectedIds.join(",");
@@ -48,36 +45,32 @@ export const Panel = () => {
   // console.log(genres);
 
   return (
-    <div className="flex flex-col md:w-[387px] mt-8 gap-y-5">
+    <div className="flex flex-col md:w-[387px]  mt-8 gap-y-5">
       <div className="flex flex-col gap-y-1">
-        <p className="text-2xl font-semibold">Genres</p>
+        <p className="text-2xl font-semibold">Search by Genre</p>
         <p className="text-base font-normal">See lists of movies by genre</p>
       </div>
 
-      <div className="flex flex-wrap gap-4">
-        {isLoading ? (
-          <p>Loading genres...</p>
-        ) : (
-          genres.map((genre: Genre) => (
-            <Badge
-              key={genre.id}
-              onClick={() => handleClick(genre.id)}
-              variant="outline"
-              className={`px-3 py-1 text-[12px] rounded-full gap-x-2 cursor-pointer border ${
-                selectedGenreIds.includes(genre.id)
-                  ? "bg-black text-white"
-                  : "bg-white dark:text-black"
-              } font-semibold`}
-            >
-              {genre.name}
-              {selectedGenreIds.includes(genre.id) ? (
-                <X size={16} className="ml-2" />
-              ) : (
-                <ChevronRight size={16} className="ml-2" />
-              )}
-            </Badge>
-          ))
-        )}
+      <div className="flex flex-wrap gap-4 dark-bg-[#09090B]">
+        {genres.map((genre: Genre) => (
+          <Badge
+            key={genre.id}
+            onClick={() => handleClick(genre.id)}
+            variant="outline"
+            className={`px-3 py-1 text-[12px] rounded-full gap-x-2 cursor-pointer border ${
+              selectedGenreIds.includes(genre.id)
+                ? "bg-black text-white"
+                : "bg-white dark:text-black"
+            } font-semibold`}
+          >
+            {genre.name}
+            {selectedGenreIds.includes(genre.id) ? (
+              <X size={16} className="ml-2" />
+            ) : (
+              <ChevronRight size={16} className="ml-2" />
+            )}
+          </Badge>
+        ))}
       </div>
     </div>
   );

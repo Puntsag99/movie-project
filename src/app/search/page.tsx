@@ -1,5 +1,11 @@
+import { SearchStyle } from "../_components/searchpage/SearchStyle";
+
 const SearchPage = () => {
-  return <div>page</div>;
+  return (
+    <div className="w-screen ">
+      <SearchStyle />
+    </div>
+  );
 };
 
 export default SearchPage;

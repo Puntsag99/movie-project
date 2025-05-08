@@ -1,3 +1,9 @@
+import { SearchInput } from "../searchgenre/SeaInput";
+
 export const SearchPageBar = () => {
-  return <div>SearchPage</div>;
+  return (
+    <div className=" flex ">
+      <SearchInput />
+    </div>
+  );
 };

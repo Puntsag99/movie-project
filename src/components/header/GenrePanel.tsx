@@ -40,7 +40,7 @@ export const GenrePanel = () => {
               onClick={() => router.push(`/genresResults?genres=${genre.id}`)}
               key={genre.id}
               variant="outline"
-              className="   px-3  py-1 text-[12px]  rounded-full  gap-x-2 cursor-pointer border border-[#e4e4e7] not-italic font-semibold"
+              className="px-3 py-1 text-[12px] rounded-full gap-x-2 cursor-pointer border border-[#e4e4e7] not-italic font-semibold"
             >
               {genre.name}
               <ChevronRight className="w-4 h-4" />
