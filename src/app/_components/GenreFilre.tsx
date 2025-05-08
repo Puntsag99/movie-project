@@ -1,3 +1,5 @@
+"use client";
+
 import { GenreMovies } from "./GenreMovies";
 import { Panel } from "./Panel";
 
