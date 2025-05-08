@@ -15,9 +15,7 @@ const formatRuntime = (runtime: number) => {
 export const Info_det = () => {
   const { detailId } = useParams() as { detailId: string };
 
-  const { data, isLoading } = useFetchDatainClient(
-    `/movie/${detailId}?language=en-US`
-  );
+  const { data } = useFetchDatainClient(`/movie/${detailId}?language=en-US`);
 
   console.log("yum bna uuuuu:", data);
 

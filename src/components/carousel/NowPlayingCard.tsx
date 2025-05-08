@@ -42,7 +42,7 @@ export const NowPlayingCard = ({
 }: Props) => {
   const [showTrailer, setShowTrailer] = useState(false);
 
-  const { data, isLoading } = useFetchDatainClient(
+  const { data } = useFetchDatainClient(
     `/movie/${movies.id}/videos?language=en-US`
   );
 

@@ -16,7 +16,7 @@ export const Writets = ({
 }) => {
   const Genres = write?.genres;
 
-  const { data, isLoading } = useFetchDatainClient(
+  const { data } = useFetchDatainClient(
     `/movie/${detailId}/credits?language=en-US`
   );
 

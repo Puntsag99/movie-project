@@ -13,7 +13,7 @@ type More = {
 export const More = ({ moreId }: { moreId: string }) => {
   const router = useRouter();
 
-  const { data, isLoading } = useFetchDatainClient(
+  const { data } = useFetchDatainClient(
     `/movie/${moreId}/similar?language=en-US&page=1`
   );
 
