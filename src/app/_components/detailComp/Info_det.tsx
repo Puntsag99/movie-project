@@ -6,14 +6,6 @@ import { DetaImage } from "./DetaImage";
 import { Writets } from "./Writets";
 import { More } from "./More";
 
-interface MovieDetail {
-  id: number;
-  runtime: number;
-  vote_average: number;
-  release_date: string;
-  original_title: string;
-}
-
 const formatRuntime = (runtime: number) => {
   const hours = Math.floor(runtime / 60);
   const minutes = runtime % 60;
@@ -22,8 +14,6 @@ const formatRuntime = (runtime: number) => {
 
 export const Info_det = () => {
   const { detailId } = useParams() as { detailId: string };
-
-  // console.log("aaaa", detailId);
 
   const { data, isLoading } = useFetchDatainClient(
     `/movie/${detailId}?language=en-US`

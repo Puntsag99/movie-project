@@ -2,7 +2,6 @@
 
 import { Badge } from "../ui/badge";
 import { ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
 
 type Genre = {
@@ -11,8 +10,6 @@ type Genre = {
 };
 
 export const SearchPanel = () => {
-  const router = useRouter();
-
   const { data, isLoading } = useFetchDatainClient(
     "/genre/movie/list?language=en"
   );

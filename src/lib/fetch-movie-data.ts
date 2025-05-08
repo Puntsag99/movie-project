@@ -1,4 +1,3 @@
-import { data } from "framer-motion/client";
 import { axiosInstance } from "./axios-instance";
 
 export const fetchMovieData = async (endPoint: string) => {
@@ -6,5 +5,3 @@ export const fetchMovieData = async (endPoint: string) => {
   const { data } = await axiosInstance(endPoint);
   return data;
 };
-
-// console.log("fafagsgs", data);

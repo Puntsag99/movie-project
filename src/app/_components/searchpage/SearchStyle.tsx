@@ -51,10 +51,12 @@ export const SearchStyle = () => {
       <div className="flex flex-col md:flex-row w-full">
         <div className="flex flex-col gap-y-8">
           <h3 className="text-xl not-italic font-semibold">
-            {genreTypes.length > 0
-              ? filteredMovies.length
-              : data?.total_results ?? 0}
-            results for "{formatted}"
+            {`${
+              genreTypes.length > 0
+                ? filteredMovies.length
+                : data?.total_results ?? 0
+            }
+            results for "${formatted}"`}
           </h3>
 
           <div className="grid grid-cols-2 grid-rows-6 md:grid-rows-3 gap-5 md:grid-cols-4 md:gap-12">

@@ -98,7 +98,7 @@ export const Value = ({
         onClick={resultClear}
         className="text-sm not-italic font-medium px-7 cursor-pointer"
       >
-        See all results for "{capitalized}"
+        See all results for {`"${capitalized}"`}
       </p>
     </div>
   );

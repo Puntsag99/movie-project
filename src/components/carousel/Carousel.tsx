@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { NowPlayingCard } from "./NowPlayingCard";
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useFetchDatainClient } from "@/hooks/useFetchDatainClient";
 import { HomeSkel } from "@/components/skeleton/HomeSkel";
 
 export const Carousel = ({}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
 
   const { data, isLoading } = useFetchDatainClient(
     "/movie/upcoming?language=en-US&page=1"
@@ -21,25 +21,23 @@ export const Carousel = ({}) => {
 
   const handleClickNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % playing.length);
-    console.log("afsdgsg");
   };
 
   const handleClickBack = () => {
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + playing.length) % playing.length
     );
-    console.log("nnnnn");
   };
 
   useEffect(() => {
-    if (playing.length) {
+    if (playing.length && !isTrailerPlaying) {
       const clearMovie = setInterval(() => {
         setCurrentIndex((prevMovies) => (prevMovies + 1) % playing.length);
       }, 6000);
 
       return () => clearInterval(clearMovie);
     }
-  }, [playing]);
+  }, [playing, isTrailerPlaying]);
 
   if (isLoading || !currentMovie) {
     return <HomeSkel />;
@@ -58,8 +56,13 @@ export const Carousel = ({}) => {
             onClick={handleClickBack}
             className="w-10 h-10 bg-[#f4f4f5] rounded-full cursor-pointer absolute left-11"
           />
+
           <div className="hidden md:block">
-            <NowPlayingCard movies={CarsoulMovies} />
+            <NowPlayingCard
+              movies={CarsoulMovies}
+              onTrailerOpen={() => setIsTrailerPlaying(true)}
+              onTrailerClose={() => setIsTrailerPlaying(false)}
+            />
           </div>
 
           <ChevronRight
@@ -70,7 +73,11 @@ export const Carousel = ({}) => {
       )}
       {CarsoulMovies && (
         <div className="flex md:hidden">
-          <NowPlayingCard movies={CarsoulMovies} />
+          <NowPlayingCard
+            movies={CarsoulMovies}
+            onTrailerOpen={() => setIsTrailerPlaying(true)}
+            onTrailerClose={() => setIsTrailerPlaying(false)}
+          />{" "}
         </div>
       )}
     </div>
