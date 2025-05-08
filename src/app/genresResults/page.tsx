@@ -1,10 +1,11 @@
 import { GenreFilre } from "../_components/GenreFilre";
+import { Suspense } from "react";
 
 const GenreHome = () => {
   return (
-    <div className="w-screen">
+    <Suspense fallback={<div>Loading...</div>}>
       <GenreFilre />
-    </div>
+    </Suspense>
   );
 };
 
