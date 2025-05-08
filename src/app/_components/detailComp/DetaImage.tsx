@@ -19,7 +19,7 @@ interface trailer {
 export const DetaImage = ({ imageData }: { imageData: MovieDetail }) => {
   const [showTrailer, setShowTrailer] = useState(false);
 
-  const { data: videoData, isLoading } = useFetchDatainClient(
+  const { data: videoData } = useFetchDatainClient(
     `/movie/${imageData.id}/videos?language=en-US`
   );
 

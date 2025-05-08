@@ -10,9 +10,7 @@ type Genre = {
 };
 
 export const SearchPanel = () => {
-  const { data, isLoading } = useFetchDatainClient(
-    "/genre/movie/list?language=en"
-  );
+  const { data } = useFetchDatainClient("/genre/movie/list?language=en");
   const genres = data?.genres || [];
 
   return (

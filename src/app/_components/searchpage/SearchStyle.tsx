@@ -30,7 +30,7 @@ export const SearchStyle = () => {
       userSearchName.charAt(0).toUpperCase() + userSearchName.slice(1);
   }
 
-  const { data, isLoading } = useFetchDatainClient(
+  const { data } = useFetchDatainClient(
     `/search/movie?query=${userSearchName}&language=en-US&page=${page}`
   );
 

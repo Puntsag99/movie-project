@@ -13,9 +13,7 @@ type Genre = {
 export const GenrePanel = () => {
   const router = useRouter();
 
-  const { data, isLoading } = useFetchDatainClient(
-    "/genre/movie/list?language=en"
-  );
+  const { data } = useFetchDatainClient("/genre/movie/list?language=en");
   // if (isLoading) return <p>Loading genres...</p>;
   const genres = data?.genres || [];
 

@@ -21,7 +21,7 @@ export const More = () => {
 
   const page = searchParams.get("page") || 1;
 
-  const { data, isLoading } = useFetchDatainClient(
+  const { data } = useFetchDatainClient(
     `/movie/${seeId}/similar?language=en-US&page=${page}`
   );
 

@@ -30,7 +30,7 @@ export const Tops = () => {
     apiUrl = `/movie/popular?language=en-US&page=${page}`;
   }
 
-  const { data, isLoading } = useFetchDatainClient(apiUrl);
+  const { data } = useFetchDatainClient(apiUrl);
 
   const moviesData = data?.results;
 

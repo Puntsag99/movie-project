@@ -37,9 +37,7 @@ export const Panel = () => {
     router.push(`/genresResults?genres=${urlString}`);
   };
 
-  const { data, isLoading } = useFetchDatainClient(
-    "/genre/movie/list?language=en"
-  );
+  const { data } = useFetchDatainClient("/genre/movie/list?language=en");
 
   const genres = data?.genres || [];
   // console.log(genres);

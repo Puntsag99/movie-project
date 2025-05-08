@@ -14,7 +14,7 @@ export const SearchOther = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  const { data, isLoading } = useFetchDatainClient(
+  const { data } = useFetchDatainClient(
     `/search/movie?query=${searchValue}&language=en-US&page=1`
   );
 

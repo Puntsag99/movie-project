@@ -19,7 +19,7 @@ type MoviesProps = {
 };
 
 export const Movies = ({ title, apiUrl }: MoviesProps) => {
-  const { data, isLoading } = useFetchDatainClient(apiUrl);
+  const { data } = useFetchDatainClient(apiUrl);
 
   const router = useRouter();
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { useEffect, useState } from "react";
 import { NowPlayingCard } from "./NowPlayingCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -14,7 +15,7 @@ export const Carousel = ({}) => {
     "/movie/upcoming?language=en-US&page=1"
   );
 
-  const playing = data?.results || [];
+  const playing = useMemo(() => data?.results || [], [data]);
   const currentMovie = playing[currentIndex];
 
   const CarsoulMovies = playing[currentIndex];

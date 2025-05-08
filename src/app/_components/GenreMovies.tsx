@@ -20,7 +20,7 @@ export const GenreMovies = () => {
 
   const page = searchParams.get("page") || 1;
 
-  const { data, isLoading } = useFetchDatainClient(
+  const { data } = useFetchDatainClient(
     `/discover/movie?language=en&with_genres=${genres}&page=${page}`
   );
 
